@@ -1,0 +1,25 @@
+= Vagrant links
+
+== Configuration through YAML file
+
+. https://www.randomjy.com/posts/vagrant-yaml/
+. https://blog.scottlowe.org/2016/01/14/improved-way-yaml-vagrant/
+. http://juliangut.com/blog/configure-vagrant-hosts-yaml
+
+== VirtualBox
+
+. https://www.linuxtechi.com/manage-virtualbox-virtual-machines-command-line/
+. https://gist.github.com/vans163/72376a8d92819556aa682fee9d5e02f0
+
+== Disk and/or Partition
+
+. https://askubuntu.com/questions/317338/how-can-i-increase-disk-size-on-a-vagrant-vm
+.. https://github.com/snowch/carbon-products-development-environment/blob/master/Vagrantfile
+. https://unix.stackexchange.com/questions/176687/set-storage-size-on-creation-of-vm-virtualbox
+. https://unix.stackexchange.com/questions/373063/auto-expand-last-partition-to-use-all-unallocated-space-using-parted-in-batch-m
+. https://www.grzegorowski.com/resizing-existing-vm-partition
+.. https://gist.github.com/christopher-hopper/9755310
+. https://gist.github.com/leifg/4713995
+. https://nmrony.info/change-disk-size-of-a-vagrant-box/
+. https://github.com/hashicorp/vagrant/issues/6143#issuecomment-411526965
+. https://medium.com/@phirschybar/resize-your-vagrant-virtualbox-disk-3c0fbc607817

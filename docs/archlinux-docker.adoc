@@ -1,0 +1,20 @@
+= Arch Linux Docker stuff
+
+== Docker installation
+
+Install / start:
+
+----
+$ sudo pacman --noconfirm -S docker
+$ sudo systemctl enable docker.service
+$ sudo systemctl start docker.service
+----
+
+Test (without login out):
+
+----
+$ sudo gpasswd -a $USER docker
+$ sudo su - $USER
+$ id
+$ docker run -it hello-world
+----
