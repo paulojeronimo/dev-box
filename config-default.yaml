@@ -1,6 +1,14 @@
+vm_name: dev-box
 vm_box: archlinux/archlinux
+vm_box_version: 2019.08.05
 vm_provision: provision/archlinux
-vm_memory: 1024
-provision_use_local_mirror: false
-disksize_size: "20GB"
+vm_memory: 4096
+vm_cpus: 2
+ports:
+  - guest: 8080
+    host: 8080
+  - guest: 3000
+    host: 3000
+provision_use_local_mirror: true
+disksize_size: 80GB
 vbguest_auto_update: false

@@ -27,6 +27,14 @@ fi
 echo "Updating package list ..."
 sudo pacman -Syy
 
+echo "Installing sysadmin tools ..."
+sudo pacman --noconfirm -S parted lsof
+
+echo "Resizing the partition to the max available size ..."
+sudo parted ---pretend-input-tty /dev/sda resizepart 2 yes 100%
+sudo btrfs filesystem resize max /
+sudo lsblk /dev/sda
+
 echo "Installing common development packages ..."
 # NOTE: The package `libnghttp2` is required to fix a https://bugs.archlinux.org/task/63547[bug] after `nodejs` package installation
 sudo pacman --noconfirm -S lsb-release vim git libnghttp2

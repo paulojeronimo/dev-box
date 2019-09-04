@@ -23,3 +23,10 @@
 . https://nmrony.info/change-disk-size-of-a-vagrant-box/
 . https://github.com/hashicorp/vagrant/issues/6143#issuecomment-411526965
 . https://medium.com/@phirschybar/resize-your-vagrant-virtualbox-disk-3c0fbc607817
+. https://stackoverflow.com/questions/14917353/resizing-disk-space-on-vagrant-box
+. https://marcbrandner.com/blog/increasing-disk-space-of-a-linux-based-vagrant-box-on-provisioning/
+. https://serverfault.com/questions/870594/resize-partition-to-maximum-using-parted-in-non-interactive-mode
+.. https://github.com/EugenMayer/parted-auto-resize
+. https://techtitbits.com/2018/12/using-parteds-resizepart-non-interactively-on-a-busy-partition/
+. https://docs.01.org/clearlinux/latest/guides/maintenance/increase-virtual-disk-size.html
+. https://www.thegeekdiary.com/how-to-resize-expand-a-btrfs-volume-filesystem/

@@ -1,1 +1,7 @@
 = Development Box
+
+----
+$ cp config-default.yaml config.yaml
+$ vim config.yaml
+$ vagrant up
+----
