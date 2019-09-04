@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+set +x
+set -eou pipefail
+
+args=${@:-"no args"}
+echo "Provisioning Arch Linux (with $args) ..."
+
+use_local_mirror=false
+while :
+do
+  param=${1:-none}
+  shift || break
+  case "$param" in
+    --use-local-mirror)
+      use_local_mirror=true
+      ;;
+  esac
+done
+
+if $use_local_mirror
+then
+  echo "Configuring pacman to use local mirror ..."
+  echo 'Server = http://10.0.2.2:8000/$repo/os/$arch' | \
+    sudo tee /etc/pacman.d/mirrorlist > /dev/null
+fi
+
+echo "Updating package list ..."
+sudo pacman -Syy
+
+echo "Installing common development packages ..."
+# NOTE: The package `libnghttp2` is required to fix a https://bugs.archlinux.org/task/63547[bug] after `nodejs` package installation
+sudo pacman --noconfirm -S lsb-release vim git libnghttp2
+
+echo "Installing Node.js ..."
+sudo pacman --noconfirm -S nodejs
+echo "Node.js version is $(node -v)"
+
+echo "Installing Yarn ..."
+sudo pacman --noconfirm -S yarn
+echo "Yarn version is $(yarn -v)"

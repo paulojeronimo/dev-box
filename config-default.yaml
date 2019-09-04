@@ -1,0 +1,6 @@
+vm_box: archlinux/archlinux
+vm_provision: provision/archlinux
+vm_memory: 1024
+provision_use_local_mirror: false
+disksize_size: "20GB"
+vbguest_auto_update: false

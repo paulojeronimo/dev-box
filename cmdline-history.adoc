@@ -1,0 +1,26 @@
+= Command Line History
+
+This file shows you some command lines did before a commit.
+
+== Initial commit
+
+----
+$ vagrant init archlinux/archlinux
+A `Vagrantfile` has been placed in this directory. You are now
+ready to `vagrant up` your first virtual environment! Please read
+the comments in the Vagrantfile as well as documentation on
+`vagrantup.com` for more information on using Vagrant.
+----
+
+----
+$ vim VagrantFile
+
+$ cat > .gitignore <<'EOF'
+/.vagrant
+/config.yaml
+/projects
+EOF
+
+$ mkdir provision
+$ vim config.yaml VagranFile provision/archlinux
+----
