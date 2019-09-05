@@ -30,3 +30,24 @@
 . https://techtitbits.com/2018/12/using-parteds-resizepart-non-interactively-on-a-busy-partition/
 . https://docs.01.org/clearlinux/latest/guides/maintenance/increase-virtual-disk-size.html
 . https://www.thegeekdiary.com/how-to-resize-expand-a-btrfs-volume-filesystem/
+
+== Problems
+
+== Git
+
+----
+$ pwd
+/projects/github.com/paulojeronimo
+
+$ git clone https://github.com/paulojeronimo/dotfiles
+Cloning into 'dotfiles'...
+remote: Enumerating objects: 31, done.
+remote: Counting objects: 100% (31/31), done.
+remote: Compressing objects: 100% (24/24), done.
+fatal: Unable to create temporary file '/projects/github.com/paulojeronimo/dotfiles/.git/objects/pack/tmp_pack_XXXXXX': Operation not permitted
+fatal: index-pack failed
+----
+
+* Refs:
+** https://stackoverflow.com/questions/57080525/fatal-unable-to-create-temporary-file-home-vagrant-projectstest-git-objects
+** https://github.com/laravel/homestead/issues/1238

@@ -10,8 +10,8 @@ vm:
 #    args:
 #      - "--use-local-mirror"
   forwarded_ports:
-    - guest: 8080
-      host: 8080
-    - guest: 3000
+    - guest: 8545 # ganache-cli
+      host: 8545
+    - guest: 3000 # react
       host: 3000
 vbguest_auto_update: false
