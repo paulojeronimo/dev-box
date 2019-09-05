@@ -1,7 +1,28 @@
 = Development Box
+:toc:
+:numbered:
+
+== Prerequisites
+
+. Install VirtualBox (https://github.com/paulojeronimo/dicas-osx/blob/master/homebrew.md#virtualbox[macOS instructions])
+. Install Vagrant (https://github.com/paulojeronimo/dicas-osx/blob/master/homebrew.md#vagrant[macOS instructions])
+
+== Procedures
+
+Run Vagrant:
+
+----
+$ vagrant up
+----
+
+== Configuration (optional steps)
+
+The file link:config-default.yaml[] configures the default values
+used by the provisioning process used by Vagrant.
+If you want to modify these settings by copying these file to `config.yaml`
+and editing this new one, like in the following commands:
 
 ----
 $ cp config-default.yaml config.yaml
 $ vim config.yaml
-$ vagrant up
 ----

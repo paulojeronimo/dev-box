@@ -9,6 +9,6 @@ ports:
     host: 8080
   - guest: 3000
     host: 3000
-provision_use_local_mirror: true
+provision_use_local_mirror: false
 disksize_size: 80GB
 vbguest_auto_update: false
