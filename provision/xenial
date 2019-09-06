@@ -39,7 +39,13 @@ install_006_dotfiles() {
 }
 
 install_005_nodejs() {
-  _install libnghttp2 nodejs yarn
+  curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+  sudo apt -y install nodejs gcc g++ make
+  curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - \
+    && echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list \
+    && sudo apt update -qq \
+    && sudo apt install -y yarn
+
   echo "Node.js version is $(node -v)"
   echo "Yarn version is $(yarn -v)"
 
@@ -54,7 +60,7 @@ install_000_sysadmin() {
 _install() {
   local pkgs=$@
   echo "Installing $pkgs ..."
-  sudo pacman --noconfirm -S $pkgs
+  sudo apt -y install $pkgs
 }
 
 _install_all() {
@@ -83,14 +89,14 @@ configure_local_mirror() {
 
 update_package_list() {
   echo "Updating package list ..."
-  sudo pacman -Syy
+  sudo apt -y update
 }
 
 resize_partition_to_max() {
-  echo "Resizing partition / to the max available size ..."
-  sudo parted ---pretend-input-tty /dev/sda resizepart 2 yes 100%
-  sudo btrfs filesystem resize max /
-  sudo lsblk /dev/sda
+  #echo "Resizing partition / to the max available size ..."
+  :
+
+
 }
 
 main() {
