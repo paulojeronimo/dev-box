@@ -2,22 +2,29 @@
 set +x
 set -eou pipefail
 
-# the command "npx truffle unbox react" requires:
-#
-# $ sudo pacman -S npm gcc make python2
-# $ npm config set python /usr/bin/python2
+PROJECTS_DIR=~/projects
 
-install_015_react() {
-  echo "Installing a sample-react-app ..."
-  yarn create react-app sample-react-app
+install_ar_trufflereactsample() {
+  echo "Installing a truffle-react sample project ..."
+  mkdir -p $PROJECTS_DIR/truffle-react-sample && cd $_
+  truffle unbox react 
+  cd $OLDPWD
+}
+
+install_ap_reactsample() {
   echo "Preventing react to spawn any browser ..."
   cat >> ~/.bashrc <<'EOF'
 # prevent react to spawn any browser
 export BROWSER=none
 EOF
+
+  echo "Installing a react sample project ..."
+  mkdir -p $PROJECTS_DIR && cd $_
+  yarn create react-app react-sample
+  cd $OLDPWD
 }
 
-install_010_trufflesuite() {
+install_am_trufflesuite() {
   echo "Installing ganache-cli ..."
   yarn global add ganache-cli 
   echo "Installing truffle ..."
@@ -29,25 +36,38 @@ export gc_host=10.0.2.15
 EOF
 }
 
-install_006_dotfiles() {
+install_ai_yarn() {
+  echo "Installing yarn ..."
+  curl -s -o- -L https://yarnpkg.com/install.sh | bash
+  export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+  echo "Yarn version is $(yarn -v)"
+}
+
+install_af_nodejs() {
+  local node_version=11.15.0
+  echo "Installing nvm ..."
+  curl -s -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
+  
+  echo "Installing node $node_version via nvm ..."
+  export NVM_DIR="$HOME/.nvm"   
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+  nvm install $node_version
+  echo "Node.js version is $(node -v)"
+
+  echo "Installing packages used by Node.js when compiling ..."
+  _install gcc make python2
+}
+
+install_ad_dotfiles() {
   echo "Installing dotfiles ..."
-  local d=~/projects/github.com/paulojeronimo
+  local d=$PROJECTS_DIR/github.com/paulojeronimo
   mkdir -p $d && cd $d
   git clone https://github.com/paulojeronimo/dotfiles
   ./dotfiles/install
   cd $OLDPWD
 }
 
-install_005_nodejs() {
-  _install libnghttp2 nodejs yarn
-  echo "Node.js version is $(node -v)"
-  echo "Yarn version is $(yarn -v)"
-
-  echo 'Configuring Yarn on PATH ...'
-  echo 'export PATH=`yarn global bin`:$PATH' >> ~/.bashrc
-}
-
-install_000_sysadmin() {
+install_aa_sysadmin() {
   _install lsb-release parted lsof tmux vim tree git
 }
 
