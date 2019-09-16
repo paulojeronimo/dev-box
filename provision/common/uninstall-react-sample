@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+set +x
+#set -e
+
+BASE_DIR=`cd "$(dirname "$0")"; pwd`
+source "$BASE_DIR"/common
+
+echo "Uninstalling $REACT_SAMPLE_PROJECT ..."
+cd "$PROJECTS_DIR"
+rm -rf $REACT_SAMPLE_PROJECT
+
+echo "Removing REACT configuration from ~/.bashrc ..."
+sed -i "/^# $REACT_BASHRC_CONFIG$/,+2d" ~/.bashrc

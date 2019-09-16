@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+set +x
+set -e
+
+BASE_DIR=`cd "$(dirname "$0")"; pwd`
+cd "$BASE_DIR"
+source ./common
+
+echo "Installing ganache-cli ..."
+yarn global add ganache-cli 
+
+echo "Installing truffle ..."
+yarn global add truffle
+
+echo "Configuring $GANACHE_CLI_BASHRC_CONFIG ..."
+cat >> ~/.bashrc <<EOF
+# $GANACHE_CLI_BASHRC_CONFIG
+export gc_host=10.0.2.15
+EOF

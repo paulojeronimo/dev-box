@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set +x
+set -e
+
+BASE_DIR=`cd "$(dirname "$0")"; pwd`
+cd "$BASE_DIR"
+source ./common
+
+echo "Uninstalling Yarn ..."
+rm -rf ~/.yarn ~/.yarnrc
+sed -i "/^export PATH.*yarn/,+1d" ~/.bashrc

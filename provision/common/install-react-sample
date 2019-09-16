@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+set +x
+set -e
+
+BASE_DIR=`cd "$(dirname "$0")"; pwd`
+cd "$BASE_DIR"
+source ./common
+
+[ -d "$PROJECTS_DIR"/$REACT_SAMPLE_PROJECT ] && ./uninstall-react-sample || true
+
+echo "Configuring ~/.bashrc to $REACT_BASHRC_CONFIG ..."
+cat >> ~/.bashrc <<EOF
+# $REACT_BASHRC_CONFIG
+export BROWSER=none
+EOF
+
+echo "Installing $REACT_SAMPLE_PROJECT project using yarn ..."
+mkdir -p "$PROJECTS_DIR" && cd "$_"
+yarn create react-app $REACT_SAMPLE_PROJECT

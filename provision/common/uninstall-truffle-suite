@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set +x
+#set -e
+
+BASE_DIR=`cd "$(dirname "$0")"; pwd`
+source "$BASE_DIR"/common
+
+echo "Uninstalling truffle suite ..."
+echo "TODO ..."
+
+echo "Removing Ganache configuration from ~/.bashrc ..."
+sed -i "/^# $GANACHE_CLI_BASHRC_CONFIG$/,+2d" ~/.bashrc

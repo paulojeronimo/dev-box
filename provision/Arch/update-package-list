@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+echo "Updating package list ..."
+pacman -Syy

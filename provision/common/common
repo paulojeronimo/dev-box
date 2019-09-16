@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+# software versions
+NVM_VERSION=0.34.0
+NODEJS_VERSION=11.15.0
+
+# base directory for all projects
+PROJECTS_DIR=~/projects
+
+# projects inside $PROJECTS_DIR
+DOTFILES_PROJECT=github.com/paulojeronimo/dotfiles
+REACT_SAMPLE_PROJECT=react-sample
+TRUFFLE_REACT_SAMPLE_PROJECT=truffle-react-sample
+
+# configurations strings on ~/.bashrc
+REACT_BASHRC_CONFIG='prevent react to spawn any browser'
+GANACHE_CLI_BASHRC_CONFIG='ganache_cli host ip'

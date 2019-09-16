@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set +x
+set -e
+
+BASE_DIR=`cd "$(dirname "$0")"; pwd`
+cd "$BASE_DIR"
+source ./common
+
+[ -d "$PROJECTS_DIR/$DOTFILES_PROJECT" ] && ./uninstall-dotfiles || true
+
+echo "Installing $DOTFILES_PROJECT project ..."
+mkdir -p "$PROJECTS_DIR"/${DOTFILES_PROJECT%/*} && cd "$_"
+git clone https://$DOTFILES_PROJECT
+$(basename $DOTFILES_PROJECT)/install

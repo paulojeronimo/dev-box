@@ -32,13 +32,17 @@ Vagrant.configure("2") do |config|
       vb.memory = vm["memory"]
       vb.cpus = vm["cpus"]
     end
-    provision_path = "provision/" + vm["provision"]["script"]
+    if vm.has_key?('provision')
+      vm["provision"][:path] = "provision/install"
+    else
+      vm.store("provision", { :path => "provision/install" })
+    end
     provision_args = []
     if vm["provision"].has_key?('args')
       vm["provision"]["args"].each do |arg|
         provision_args.push(arg)
       end
     end
-    box.vm.provision "shell", path: provision_path, args: provision_args, privileged: false
+    box.vm.provision "shell", path: vm["provision"][:path], args: provision_args, privileged: false
   end
 end

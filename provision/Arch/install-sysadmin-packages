@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+pacman --noconfirm -S \
+  lsb-release \
+  parted \
+  lsof \
+  tmux \
+  vim \
+  tree \
+  git \
+  virtualbox-guest-utils-nox

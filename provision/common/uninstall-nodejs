@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set +x
+set -e
+
+BASE_DIR=`cd "$(dirname "$0")"; pwd`
+cd "$BASE_DIR"
+source ./common
+
+echo "Uninstalling Node.js ..."
+rm -rf ~/.nvm ~/.npm ~/.npmrc
+sed -i "/^export NVM_DIR/,+3d" ~/.bashrc

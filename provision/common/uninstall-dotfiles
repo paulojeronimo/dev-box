@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set +x
+set -e
+
+BASE_DIR=`cd "$(dirname "$0")"; pwd`
+cd "$BASE_DIR"
+source ./common
+
+echo "Uninstalling $DOTFILES_PROJECT ..."
+cd $PROJECTS_DIR > /dev/null
+$DOTFILES_PROJECT/remove || true
+rm -rf $DOTFILES_PROJECT
