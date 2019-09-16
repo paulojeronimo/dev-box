@@ -1,17 +1,1 @@
-vm:
-  name: dev-box
-  box: archlinux/archlinux
-  box_version: 2019.08.05
-  memory: 4096
-  disk_size: 80GB
-  cpus: 2
-  provision:
-    script: archlinux
-#    args:
-#      - "--use-local-mirror"
-  forwarded_ports:
-    - guest: 8545 # ganache-cli
-      host: 8545
-    - guest: 3000 # react
-      host: 3000
-vbguest_auto_update: false
+config/archlinux.yaml

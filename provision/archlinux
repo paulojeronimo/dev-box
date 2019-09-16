@@ -68,7 +68,7 @@ install_ad_dotfiles() {
 }
 
 install_aa_sysadmin() {
-  _install lsb-release parted lsof tmux vim tree git
+  _install lsb-release parted lsof tmux vim tree git virtualbox-guest-utils-nox
 }
 
 _install() {

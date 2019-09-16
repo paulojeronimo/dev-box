@@ -1,15 +1,17 @@
 vm:
   name: dev-box
-  box: ubuntu/xenial64
-  box_version: 20190903.0.0
+  box: ubuntu/bionic64
+  box_version: 20190911.0.0
   memory: 4096
   disk_size: 80GB
   cpus: 2
   provision:
-    script: xenial
+    script: ubuntu-bionic64
+#    args:
+#      - "--use-local-mirror"
   forwarded_ports:
     - guest: 8545 # ganache-cli
       host: 8545
     - guest: 3000 # react
       host: 3000
-vbguest_auto_update: false
+vbguest_auto_update: true
