@@ -5,8 +5,7 @@ vm:
   memory: 4096
   disk_size: 80GB
   cpus: 2
-  provision:
-    script: ubuntu-bionic64
+#  provision:
 #    args:
 #      - "--use-local-mirror"
   forwarded_ports:

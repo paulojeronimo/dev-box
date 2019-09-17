@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+echo "Configuring apt to use local mirror ..."
+bash -c "cat > /etc/apt/sources.list" <<'EOF'
+deb http://10.0.2.2:8000/ubuntu/ bionic main restricted
+deb-src http://10.0.2.2:8000/ubuntu/ bionic main restricted
+deb http://10.0.2.2:8000/ubuntu/ bionic-updates main restricted
+deb-src http://10.0.2.2:8000/ubuntu/ bionic-updates main restricted
+EOF

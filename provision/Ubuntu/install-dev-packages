@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+apt -y install \
+  build-essential \
+  gcc \
+  g++ \
+  make \
+  python
