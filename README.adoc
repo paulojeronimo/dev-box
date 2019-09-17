@@ -2,6 +2,11 @@
 :toc:
 :numbered:
 
+This project offers you scripts to provision your development box (focused on Ethereum and React tools) using one of the following operational systems:
+
+. Arch Linux (version https://app.vagrantup.com/archlinux/boxes/archlinux/versions/2019.09.10[2019.09.10])
+. Ubuntu (bionic64 version https://app.vagrantup.com/ubuntu/boxes/bionic64/versions/20190914.0.0[20190914.0.0])
+
 == Prerequisites
 
 . Install VirtualBox (https://github.com/paulojeronimo/dicas-osx/blob/master/homebrew.md#virtualbox[macOS instructions])
@@ -17,12 +22,18 @@ $ vagrant up
 
 == Configuration (optional steps)
 
-The file link:config-default.yaml[] configures the default values
-used by the provisioning process used by Vagrant.
-If you want to modify these settings by copying these file to `config.yaml`
+The file link:config-default.yaml[] (currently pointing to link:config/archlinux.yaml[]) configures the default values used by the provisioning process.
+
+You may want to use another Vagrant Box or configure your own settings by copying one file from link:config[] dir to `config.yaml`
 and editing this new one, like in the following commands:
 
+[subs="attributes"]
 ----
-$ cp config-default.yaml config.yaml
+$ cp config/ubuntu-bionic64.yaml config.yaml
 $ vim config.yaml
 ----
+
+Currently, to do this, you can use the following files:
+
+. link:config/archlinux.yaml[]
+. link:config/ubuntu-bionic64.yaml[]
