@@ -1,7 +1,7 @@
 vm:
   name: dev-box
   box: archlinux/archlinux
-  box_version: 2019.08.05
+  box_version: 2019.09.10
   memory: 4096
   disk_size: 80GB
   cpus: 2

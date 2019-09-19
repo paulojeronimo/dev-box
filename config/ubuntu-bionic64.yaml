@@ -1,7 +1,7 @@
 vm:
   name: dev-box
   box: ubuntu/bionic64
-  box_version: 20190911.0.0
+  box_version: 20190914.0.0
   memory: 4096
   disk_size: 80GB
   cpus: 2
