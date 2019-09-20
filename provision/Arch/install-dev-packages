@@ -3,4 +3,5 @@
 pacman --noconfirm -S \
   gcc \
   make \
-  python2
+  python2 \
+  asciidoctor

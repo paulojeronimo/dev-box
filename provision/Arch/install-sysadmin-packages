@@ -8,4 +8,5 @@ pacman --noconfirm -S \
   vim \
   tree \
   git \
-  virtualbox-guest-utils-nox
+  virtualbox-guest-utils-nox \
+  rsync
