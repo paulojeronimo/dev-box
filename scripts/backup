@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+BASE_DIR=`cd "$(dirname "$0")"/..; pwd`
+cd "$BASE_DIR"
+
+if [ $USER = vagrant ]
+then
+  backup=/vagrant/tmp/backup.tar.gz
+  cd
+  echo "Creating $backup ..."
+  tar cvfz $backup .ssh
+else
+  vagrant ssh -c /vagrant/scripts/backup
+fi

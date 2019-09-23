@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set +x
+set -e
+
+BASE_DIR=`cd "$(dirname "$0")"; pwd`
+cd "$BASE_DIR"
+source ./common
+
+backup=/vagrant/tmp/backup.tar.gz
+echo "Restoring $backup ..."
+tar xvfz $backup -C ~/
