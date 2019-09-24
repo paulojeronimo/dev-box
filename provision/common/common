@@ -3,6 +3,8 @@
 # software versions
 NVM_VERSION=0.34.0
 NODEJS_VERSION=11.15.0
+GANACHE_CLI_VERSION=6.7.0
+TRUFFLE_VERSION=5.0.37
 
 # base directory for all projects
 PROJECTS_DIR=~/projects

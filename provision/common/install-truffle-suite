@@ -6,11 +6,11 @@ BASE_DIR=`cd "$(dirname "$0")"; pwd`
 cd "$BASE_DIR"
 source ./common
 
-echo "Installing ganache-cli ..."
-yarn global add ganache-cli 
+echo "Installing ganache-cli ($GANACHE_CLI_VERSION) ..."
+yarn global add ganache-cli@$GANACHE_CLI_VERSION
 
-echo "Installing truffle ..."
-yarn global add truffle
+echo "Installing truffle ($TRUFFLE_VERSION) ..."
+yarn global add truffle@$TRUFFLE_VERSION
 
 echo "Configuring $GANACHE_CLI_BASHRC_CONFIG ..."
 cat >> ~/.bashrc <<EOF

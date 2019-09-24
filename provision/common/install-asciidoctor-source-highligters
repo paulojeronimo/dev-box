@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set +x
+set -e
+
+BASE_DIR=`cd "$(dirname "$0")"; pwd`
+cd "$BASE_DIR"
+source ./common
+
+echo 'Adding Ruby gems to PATH ...'
+setpath='export PATH=$PATH:~/.gem/ruby/2.6.0/bin'
+eval $setpath
+echo "$setpath" >> ~/.bashrc
+
+echo 'Installing coderay ...'
+gem install coderay
+
+echo 'Installing rouge ...'
+gem install rouge

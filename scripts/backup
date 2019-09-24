@@ -8,7 +8,7 @@ then
   backup=/vagrant/tmp/backup.tar.gz
   cd
   echo "Creating $backup ..."
-  tar cvfz $backup .ssh
+  tar cvfz $backup --exclude='.ssh/authorized_keys' .ssh
 else
   vagrant ssh -c /vagrant/scripts/backup
 fi
