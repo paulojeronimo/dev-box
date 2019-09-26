@@ -7,7 +7,7 @@ cd "$BASE_DIR"
 source ./common
 
 ./install-dotfiles
-./install-asciidoctor-source-highligters
+./install-asciidoctor-gems
 ./install-nodejs
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"

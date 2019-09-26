@@ -11,6 +11,9 @@ setpath='export PATH=$PATH:~/.gem/ruby/2.6.0/bin'
 eval $setpath
 echo "$setpath" >> ~/.bashrc
 
+echo 'Installing asciidoctor-pdf'
+gem install asciidoctor-pdf --pre
+
 echo 'Installing coderay ...'
 gem install coderay
 
