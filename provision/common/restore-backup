@@ -6,6 +6,8 @@ BASE_DIR=`cd "$(dirname "$0")"; pwd`
 cd "$BASE_DIR"
 source ./common
 
-backup=/vagrant/tmp/backup.tar.gz
-echo "Restoring $backup ..."
-tar xvfz $backup -C ~/
+if [ -f "$BACKUP_TAR_GZ" ]
+then
+  echo "Restoring \"$BACKUP_TAR_GZ\" ..."
+  tar xvfz "$BACKUP_TAR_GZ" -C ~/
+fi

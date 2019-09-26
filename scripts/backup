@@ -2,13 +2,13 @@
 
 BASE_DIR=`cd "$(dirname "$0")"/..; pwd`
 cd "$BASE_DIR"
+source ./provision/common/common
 
 if [ $USER = vagrant ]
 then
-  backup=/vagrant/tmp/backup.tar.gz
   cd
-  echo "Creating $backup ..."
-  tar cvfz $backup --exclude='.ssh/authorized_keys' .ssh
+  echo "Creating \"$BACKUP_TAR_GZ\" ..."
+  tar cvfz "$BACKUP_TAR_GZ" --exclude='.ssh/authorized_keys' .ssh
 else
   vagrant ssh -c /vagrant/scripts/backup
 fi
