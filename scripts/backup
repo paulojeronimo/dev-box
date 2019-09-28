@@ -8,6 +8,7 @@ if [ $USER = vagrant ]
 then
   cd
   echo "Creating \"$BACKUP_TAR_GZ\" ..."
+  mkdir -p "`dirname "$BACKUP_TAR_GZ"`"
   tar cvfz "$BACKUP_TAR_GZ" --exclude='.ssh/authorized_keys' .ssh
 else
   vagrant ssh -c /vagrant/scripts/backup
