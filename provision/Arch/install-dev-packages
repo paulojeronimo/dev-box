@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 
+# glibc and chromium are requirements to install decktape
+
 pacman --noconfirm -S \
   gcc \
+  glibc \
   make \
   python2 \
+  chromium \
   asciidoctor

@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+#
+# DeckTape (https://github.com/astefanutti/decktape) installation
+#
+set +x
+set -e
+
+BASE_DIR=`cd "$(dirname "$0")"; pwd`
+cd "$BASE_DIR"
+source ./common
+
+npm install -g decktape

@@ -11,11 +11,16 @@ setpath='export PATH=$PATH:~/.gem/ruby/2.6.0/bin'
 eval $setpath
 echo "$setpath" >> ~/.bashrc
 
-echo 'Installing asciidoctor-pdf'
+echo 'Installing asciidoctor-pdf gem'
 gem install asciidoctor-pdf --pre
 
-echo 'Installing coderay ...'
+echo 'Installing coderay gem ...'
 gem install coderay
 
-echo 'Installing rouge ...'
+echo 'Installing rouge gem ...'
 gem install rouge
+
+# The next gems are used by github.com/paulojeronimo/asciidoctor-backends
+echo 'Installing asciidoctor-backends required gems ...'
+gem install tilt haml thread_safe
+gem install slim --version 2.1.0
