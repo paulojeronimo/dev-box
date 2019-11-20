@@ -1,13 +1,14 @@
 vm:
   name: dev-box
-  box: archlinux/archlinux
-  box_version: 2019.09.10
-  memory: 4096
+  box: paulojeronimo/archlinux
+  box_version: 0
+  memory: 8192
   disk_size: 80GB
   cpus: 2
-#  provision:
-#    args:
-#      - "--use-local-mirror"
+# provision:
+#   args:
+#     - "--use-local-mirror"
+  gui: true
   forwarded_ports:
     - guest: 8545 # ganache-cli
       host: 8545

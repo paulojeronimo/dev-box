@@ -27,7 +27,7 @@ Vagrant.configure("2") do |config|
     end
     box.vm.synced_folder "projects", "/projects", create: true
     box.vm.provider "virtualbox" do |vb|
-      vb.gui = false
+      vb.gui = vm["gui"]
       vb.name = vm["name"]
       vb.memory = vm["memory"]
       vb.cpus = vm["cpus"]

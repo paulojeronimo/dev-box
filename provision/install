@@ -72,9 +72,9 @@ main() {
 
   $use_local_mirror && run distro sudo configure-local-mirror || true
   run distro sudo update-package-list
-  run distro sudo install-sysadmin-packages
-  run distro sudo install-dev-packages
-  run distro sudo resize-partition-to-max
+  #run distro sudo install-sysadmin-packages
+  #run distro sudo install-dev-packages
+  #run distro sudo resize-partition-to-max
   run common install
   
   cat <<'EOF'

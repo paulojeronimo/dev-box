@@ -1,10 +1,20 @@
 #!/usr/bin/env bash
 
-# software versions
-NVM_VERSION=0.34.0
-NODEJS_VERSION=11.15.0
+# -----------------
+# software versions 
+NVM_VERSION=0.35.1
+# * In order to use Truffe, Node should not be version 12 or above
+#   because it still does not support this version:
+# ** https://github.com/trufflesuite/truffle/issues/2070
+# ** https://github.com/decentralized-identity/element/issues/23
+# * But, to workaround this problem we can use a .nvmrc inside Truffle projects
+#   to specify what Node version to use (i.e., 10.x)
+NODEJS_VERSION=12.13.0
+YARN_VERSION=1.19.1
 GANACHE_CLI_VERSION=6.7.0
-TRUFFLE_VERSION=5.0.37
+TRUFFLE_VERSION=5.1.0
+# -----------------
+# software versions END
 
 # base directory for all projects
 PROJECTS_DIR=~/projects

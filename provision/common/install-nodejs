@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+#
+# * References:
+# ** https://github.com/nvm-sh/nvm#install--update-script
+#
 set +x
 set -e
 

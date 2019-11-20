@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-
-echo "Resizing partition / to the max available size ..."
-parted ---pretend-input-tty /dev/sda resizepart 2 yes 100%
-btrfs filesystem resize max /
-lsblk /dev/sda
