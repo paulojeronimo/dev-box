@@ -1,6 +1,6 @@
 vm:
   name: dev-box
-  box: paulojeronimo/archlinux
+  box: paulojeronimo/archlinux-docker
   box_version: 0
   memory: 8192
   disk_size: 80GB
@@ -8,7 +8,7 @@ vm:
 # provision:
 #   args:
 #     - "--use-local-mirror"
-  gui: true
+  gui: false
   forwarded_ports:
     - guest: 8545 # ganache-cli
       host: 8545
