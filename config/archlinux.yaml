@@ -1,6 +1,6 @@
 vm:
   name: dev-box
-  box: paulojeronimo/archlinux-docker
+  box: paulojeronimo/archlinux-default
   box_version: 0
   memory: 8192
   disk_size: 80GB

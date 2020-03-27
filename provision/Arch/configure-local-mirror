@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+mirrorlist=/etc/pacman.d/mirrorlist
+
+echo "Saving $mirrorlist to $mirrorlist.original ..."
+cp $mirrorlist $mirrorlist.original
+
 echo "Configuring pacman to use local mirror ..."
 echo 'Server = http://10.0.2.2:8000/$repo/os/$arch' | \
-  tee /etc/pacman.d/mirrorlist > /dev/null
+  tee $mirrorlist > /dev/null
