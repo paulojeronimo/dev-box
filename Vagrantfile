@@ -25,7 +25,6 @@ Vagrant.configure("2") do |config|
         box.vm.network "forwarded_port", guest: port["guest"], host: port["host"]
       end
     end
-    #box.vm.synced_folder "projects", "/projects", create: true
     box.vm.provider "virtualbox" do |vb|
       vb.gui = vm["gui"]
       vb.name = vm["name"]

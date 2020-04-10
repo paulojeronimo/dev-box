@@ -8,6 +8,6 @@ source ./common
 
 if [ -f "$BACKUP_TAR_GZ" ]
 then
-  echo "Restoring \"$BACKUP_TAR_GZ\" ..."
+  echo "Restoring backup (from \"$BACKUP_TAR_GZ\") ..."
   tar xvfz "$BACKUP_TAR_GZ" -C ~/
 fi

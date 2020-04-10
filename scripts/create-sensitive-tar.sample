@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+cd
+tar -rLf "$SENSITIVE_TAR" --exclude='.ssh/authorized_keys' .ssh
+tar -rLf "$SENSITIVE_TAR" .gitconfig

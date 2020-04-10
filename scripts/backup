@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+DEBUG=${DEBUG:-false}
+$DEBUG && set -x || set +x
 
 BASE_DIR=`cd "$(dirname "$0")"/..; pwd`
 cd "$BASE_DIR"
@@ -6,10 +8,11 @@ source ./provision/common/common
 
 if [ $USER = vagrant ]
 then
-  cd
-  echo "Creating \"$BACKUP_TAR_GZ\" ..."
-  mkdir -p "`dirname "$BACKUP_TAR_GZ"`"
-  tar cvfz "$BACKUP_TAR_GZ" --exclude='.ssh/authorized_keys' .ssh
+  echo "Creating \"$BACKUP_TAR\" ..."
+  mkdir -p "`dirname "$BACKUP_TAR"`"
+  create_tar=scripts/create-backup-tar
+  [ -f $create_tar ] || create_tar=$create_tar.sample
+  bash $create_tar
 else
   vagrant ssh -c /vagrant/scripts/backup
 fi

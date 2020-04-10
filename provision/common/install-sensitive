@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+DEBUG=${DEBUG:-false}
+$DEBUG && set -x || set +x
+set -eo pipefail
+
+BASE_DIR=`cd "$(dirname "$0")"; pwd`
+source ./common
+cd "$BASE_DIR"
+
+if [ -f "$SENSITIVE_TAR" ]
+then
+  echo "Extrating \"$SENSITIVE_TAR\" to $HOME ..."
+  tar xf "$SENSITIVE_TAR" -C ~
+fi

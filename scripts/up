@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+DEBUG=${DEBUG:-false}
+$DEBUG && set -x || set +x
+set -eo pipefail
+
+export BASE_DIR=`cd "$(dirname "$0")"/..; pwd`
+source ./provision/common/common
+cd "$BASE_DIR"
+
+if [ "$1" = "-f" ] || [ ! -f "$SENSITIVE_TAR" ]
+then
+  echo "Generating a backup for your sensitive files to replicate it on VM ..."
+  mkdir -p "`dirname "$SENSITIVE_TAR"`"
+  rm -f "$SENSITIVE_TAR"
+  create_tar=scripts/create-sensitive-tar
+  [ -f $create_tar ] || create_tar=$create_tar.sample
+  bash $create_tar
+  echo "File ($SENSITIVE_TAR) generated!"
+else
+  echo "Skipping \"$SENSITIVE_TAR\" generation!"
+fi
+
+echo "Starting \"vagrant up\" ..."
+vagrant up

@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-set +x
+DEBUG=${DEBUG:-false}
+$DEBUG && set -x || set +x
 set -eou pipefail
 
 BASE_DIR=`cd "$(dirname "$0")"; pwd`
@@ -8,76 +9,80 @@ BASE_DIR=`cd "$(dirname "$0")"; pwd`
 # https://linuxize.com/post/how-to-check-linux-version/
 # https://gist.github.com/natefoo/814c5bf936922dad97ff
 detect_distro() {
-	if [ -f /etc/os-release ]; then
-		# freedesktop.org and systemd
-		. /etc/os-release
-		OS=$NAME
-		VER=${VERSION_ID:-Unknown}
-	elif type lsb_release >/dev/null 2>&1; then
-		# linuxbase.org
-		OS=$(lsb_release -si)
-		VER=$(lsb_release -sr)
-	elif [ -f /etc/lsb-release ]; then
-		# For some versions of Debian/Ubuntu without lsb_release command
-		. /etc/lsb-release
-		OS=$DISTRIB_ID
-		VER=$DISTRIB_RELEASE
-	elif [ -f /etc/debian_version ]; then
-		# Older Debian/Ubuntu/etc.
-		OS=Debian
-		VER=$(cat /etc/debian_version)
-	else
-		echo "Linux distro not suported!"
-		exit 1
-	fi
+  if [ -f /etc/os-release ]; then
+    # freedesktop.org and systemd
+    . /etc/os-release
+    OS=$NAME
+    VER=${VERSION_ID:-Unknown}
+  elif type lsb_release >/dev/null 2>&1; then
+    # linuxbase.org
+    OS=$(lsb_release -si)
+    VER=$(lsb_release -sr)
+  elif [ -f /etc/lsb-release ]; then
+    # For some versions of Debian/Ubuntu without lsb_release command
+    . /etc/lsb-release
+    OS=$DISTRIB_ID
+    VER=$DISTRIB_RELEASE
+  elif [ -f /etc/debian_version ]; then
+    # Older Debian/Ubuntu/etc.
+    OS=Debian
+    VER=$(cat /etc/debian_version)
+  else
+    echo "Linux distro not suported!"
+    exit 1
+  fi
+}
+
+run_cmd() {
+  local cmd
+  if [ "$3" = "no args" ]
+  then
+    cmd="$1 $2"
+  else
+    cmd="$1 $2 $3"
+  fi
+  echo "Running \"$cmd\""
+  eval "$cmd"
 }
 
 run() {
-  local origin=$1; shift
-  local script=$1
-  [ "$script" = "sudo" ] && {
-    cmd="sudo bash" 
-    shift; script=$1
-  } || cmd="bash"
   local dir
   case "$OS" in
     Arch*) dir=Arch ;;
     *) dir=$OS ;;
   esac
+  local origin=$1; shift
   case "$origin" in
     distro) dir=/vagrant/provision/$dir ;;
     common) dir=/vagrant/provision/common ;;
   esac
+  local script=$1
+  local cmd
+  [ "$script" = "sudo" ] && {
+    cmd="sudo bash" 
+    shift; script=$1
+  } || cmd="bash"
+  shift
   script=$dir/$script
-  if [ -f "$script" ]; then
-    $cmd "$script"
+  if [ -f "$script" ]
+  then
+    run_cmd "$cmd" "$script" "$@"
+  elif [ -f "$script.sample" ]
+  then
+    run_cmd "$cmd" "$script.sample" "$@"
   else
-    echo "WARNING: script \"$script\" not found!"
+    echo "ERROR: no script named \"$script\" or \"$script.sample\" found!"
+    exit 1
   fi
 }
 
 main() {
   detect_distro
+  local args="$@"
   echo "Provisioning $OS version $VER (with $args) ..."
-
-  local use_local_mirror=false
-  while :
-  do
-    local param=${1:-none}
-    shift || break
-    case "$param" in
-      --use-local-mirror) use_local_mirror=true ;;
-    esac
-  done
-
-  [ ! $use_local_mirror ] || run distro sudo configure-local-mirror
-  run distro sudo update-package-list
-  #run distro sudo install-sysadmin-packages
-  #run distro sudo install-dev-packages
-  #run distro sudo resize-partition-to-max
-  run common install
-  
-  cat <<'EOF'
+  run distro sudo install "$args"
+  run common install "$args"
+  cat <<EOF
 
 \o/ \o/ \o/ \o/ \o/ \o/
 -----------------------
@@ -87,5 +92,4 @@ EOF
 }
 
 cd "$BASE_DIR"
-args=${@:-"no args"}
-main ${args}
+main ${@:-"no args"}

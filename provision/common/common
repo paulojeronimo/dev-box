@@ -1,32 +1,18 @@
 #!/usr/bin/env bash
+THIS_DIR=`cd "$(dirname "${BASH_SOURCE[0]}")"; pwd`
 
-# -----------------
-# software versions 
-NVM_VERSION=0.35.1
-# * In order to use Truffe, Node should not be version 12 or above
-#   because it still does not support this version:
-# ** https://github.com/trufflesuite/truffle/issues/2070
-# ** https://github.com/decentralized-identity/element/issues/23
-# * But, to workaround this problem we can use a .nvmrc inside Truffle projects
-#   to specify what Node version to use (i.e., 10.x)
-NODEJS_VERSION=12.13.0
-YARN_VERSION=1.19.1
-GANACHE_CLI_VERSION=6.7.0
-TRUFFLE_VERSION=5.1.0
-# -----------------
-# software versions END
-
-# base directory for all projects
-PROJECTS_DIR=~/projects
-
-# backup file for ssh keys and other
-BACKUP_TAR_GZ=/vagrant/tmp/backup.tar.gz
-
-# projects inside $PROJECTS_DIR
-DOTFILES_PROJECT=github.com/paulojeronimo/dotfiles
-REACT_SAMPLE_PROJECT=react-sample
-TRUFFLE_REACT_SAMPLE_PROJECT=truffle-react-sample
-
-# configurations strings on ~/.bashrc
-REACT_BASHRC_CONFIG='prevent react to spawn any browser'
-GANACHE_CLI_BASHRC_CONFIG='ganache_cli host ip'
+config=$THIS_DIR/config
+if ! source "$config" &> /dev/null
+then
+  if [ -f "$config" ]
+  then
+    echo "Please, verify if there are errors in \"$config\" file!"
+    exit 1
+  fi
+  config=$config.sample
+  if ! source "$config" &> /dev/null
+  then
+    echo "File \"$config\" was not found or contain errors!"
+    exit 1
+  fi
+fi

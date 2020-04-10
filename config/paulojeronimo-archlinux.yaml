@@ -1,7 +1,7 @@
 vm:
   name: dev-box
-  box: archlinux/archlinux
-  box_version: 2020.03.04
+  box: finishertech/archlinux-default
+  box_version: 0
   memory: 8192
   disk_size: 80GB
   cpus: 2

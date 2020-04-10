@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+DEBUG=${DEBUG:-false}
+$DEBUG && set -x || set +x
+set -eou pipefail
+
+echo "Ubuntu install"

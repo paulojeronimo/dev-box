@@ -1,12 +1,15 @@
 #!/usr/bin/env bash
+DEBUG=${DEBUG:-false}
+$DEBUG && set -x || set +x
+set -eo pipefail
 
 BASE_DIR=`cd "$(dirname "$0")"/..; pwd`
 cd "$BASE_DIR"
+source ./provision/common/common
 
-backup=tmp/backup.tar.gz
-if ! [ -f $backup ]
+if [ "$1" != "-f" ] && ! [ -f $BACKUP_TAR ]
 then
-  echo "File $PWD/$backup not found. Aborting!"
+  echo "File $BACKUP_TAR not found. Aborting!"
   exit 1
 fi
 
