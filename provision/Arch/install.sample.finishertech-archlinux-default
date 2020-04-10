@@ -20,6 +20,3 @@ done
 ! $use_local_mirror || ./configure-local-mirror
 
 ./update-package-list
-./install-sysadmin-packages
-./install-dev-packages
-./install-docker

@@ -1,7 +1,16 @@
 /*.html
 /*.pdf
 /.vagrant
-/config.yaml
 /projects
 /*.log
 /tmp
+
+# Your configuration files:
+/config.yaml
+/provision/Arch/finishertech-archlinux-default
+/provision/Arch/install
+/provision/Ubuntu/install
+/provision/common/config
+/provision/common/install
+/scripts/create-backup-tar
+/scripts/create-sensitive-tar

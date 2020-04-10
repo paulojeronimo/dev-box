@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+tee /etc/modules-load.d/loop.conf <<< "loop"
+modprobe loop
+pacman -S --noconfirm docker
+systemctl start docker.service
+systemctl enable docker.service
+gpasswd -a vagrant docker

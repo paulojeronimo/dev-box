@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+
+# base directory for all projects
+PROJECTS_DIR=~/projects
+
+# backup file for sensitive or specific data (ssh keys, .gitconfig)
+SENSITIVE_TAR=tmp/sensitive.tar
+# backup file with other user files
+BACKUP_TAR=tmp/backup.tar
+
+if [ $USER = vagrant ]
+then
+  SENSITIVE_TAR=/vagrant/$SENSITIVE_TAR
+  BACKUP_TAR=/vagrant/$BACKUP_TAR
+else
+  SENSITIVE_TAR=$BASE_DIR/$SENSITIVE_TAR
+  BACKUP_TAR=$BASE_DIR/$BACKUP_TAR
+fi
+
+export SENSITIVE_TAR
+export BACKUP_TAR
+
+# projects inside $PROJECTS_DIR
+DOTFILES_PROJECT=github.com/paulojeronimo/dotfiles
+
+# Software versions 
+NVM_VERSION=0.35.3
+NODEJS_VERSION=12.16.2
+YARN_VERSION=1.22.4
+GANACHE_CLI_VERSION=6.9.1
+# * Pay attention about the use of Truffe with Node version 12 or above:
+# ** https://github.com/trufflesuite/truffle/issues/2070
+# ** https://github.com/decentralized-identity/element/issues/23
+# * If you have problems, a workaround is use a .nvmrc inside Truffle projects
+#   to specify what Node version to use (i.e., 10.x)
+TRUFFLE_VERSION=5.3.0-tezos.0
+DECKTAPE_VERSION=2.11.0
+
+# Examples
+REACT_SAMPLE_PROJECT=react-sample
+TRUFFLE_REACT_SAMPLE_PROJECT=truffle-react-sample
+
+# Configurations strings on ~/.bashrc
+REACT_BASHRC_CONFIG='prevent react to spawn any browser'
+GANACHE_CLI_BASHRC_CONFIG='ganache_cli host ip'

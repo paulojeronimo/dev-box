@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set +x
+set -e
+
+BASE_DIR=`cd "$(dirname "$0")"; pwd`
+cd "$BASE_DIR"
+source ./common
+
+echo "Installing decktape ($DECKTAPE_VERSION) ..."
+yarn global add decktape@$DECKTAPE_VERSION
