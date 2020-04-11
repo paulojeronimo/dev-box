@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+set -eou pipefail
+
+if ! get=`which curl`; then
+  if ! get=`which wget`; then
+    echo "Fail! Please, install curl or wget!"
+    exit 1
+  fi
+fi
+check_overwrite=${check_overwrite:-false}
+user=paulojeronimo
+project=dev-box
+github_projects=~/projects/github.com
+repo=$user/$project
+repo_tar=https://github.com/$repo/archive/master.tar.gz
+user_github_dir=~/projects/github.com/$user
+echo -e "Downloading $repo_tar.\nIt will be extracted in $user_github_dir/$project ..."
+if $check_overwrite; then
+  ! [ -d "$user_github_dir/$project" ] || {
+    echo "Fail! Output directory already exists!"
+    exit 1
+  }
+else
+  rm -rf "$user_github_dir/$project"
+fi
+mkdir -p $user_github_dir
+case "$get" in
+  *curl)
+    $get -L $repo_tar
+    ;;
+  *)
+    $get -O- $repo_tar
+    ;;
+esac | tar -xz -C $user_github_dir
+mv $user_github_dir/$project-master $user_github_dir/$project
+echo 'Done!'
