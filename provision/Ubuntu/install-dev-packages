@@ -5,4 +5,12 @@ apt -y install \
   gcc \
   g++ \
   make \
-  python
+  python \
+  python-pip \
+  jq \
+  moreutils
+
+# Installation of Go Language:
+add-apt-repository -y ppa:longsleep/golang-backports
+apt -y update
+apt -y install golang-go

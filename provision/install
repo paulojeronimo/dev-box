@@ -46,15 +46,18 @@ run_cmd() {
 }
 
 run() {
+  set -x
   local dir
+  local os
   case "$OS" in
-    Arch*) dir=Arch ;;
-    *) dir=$OS ;;
+    Arch*) os=Arch ;;
+    *) os=$OS ;;
   esac
   local origin=$1; shift
+  [ USER = vagrant ] && dir=/vagrant/provision || dir=$BASE_DIR
   case "$origin" in
-    distro) dir=/vagrant/provision/$dir ;;
-    common) dir=/vagrant/provision/common ;;
+    distro) dir=$dir/$os ;;
+    common) dir=$dir/common ;;
   esac
   local script=$1
   local cmd

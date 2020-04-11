@@ -13,15 +13,3 @@ pacman --noconfirm -S \
   jq \
   go \
   moreutils
-
-# Add PATH used by pip binaries
-echo 'Adding ~/.local/bin to PATH ...'
-cat >> ~/.bashrc <<'EOF'
-export PATH="$HOME/.local/bin:$PATH"
-EOF
-
-# Add PATH used by go binaries
-echo 'Adding ~/go/bin to PATH ...'
-cat >> ~/.bashrc <<'EOF'
-export PATH="$HOME/go/bin:$PATH"
-EOF

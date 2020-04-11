@@ -1,6 +1,25 @@
 #!/usr/bin/env bash
 DEBUG=${DEBUG:-false}
 $DEBUG && set -x || set +x
-set -eou pipefail
+set -eo pipefail
 
-echo "Ubuntu install"
+BASE_DIR=`cd "$(dirname "$0")"; pwd`
+cd "$BASE_DIR"
+
+echo "Ubuntu Linux is running \"install ${@:-"with no args"}\""
+
+use_local_mirror=false
+while :
+do
+  case "$1" in
+    --use-local-mirror) use_local_mirror=true ;;
+  esac
+  shift || break
+done
+
+! $use_local_mirror || ./configure-local-mirror
+
+./update-package-list
+./install-sysadmin-packages
+./install-dev-packages
+./install-docker

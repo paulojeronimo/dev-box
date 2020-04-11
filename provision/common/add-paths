@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+# Add PATH used by pip binaries
+if ! grep -q "^# Add.*\.local/bin" ~/.bashrc
+then
+  echo 'Adding ~/.local/bin to PATH ...'
+  cat >> ~/.bashrc <<'EOF'
+# Add ~/.local/bin to PATH
+export PATH="~/.local/bin:$PATH"
+EOF
+fi
+
+# Add PATH used by go binaries
+if ! grep -q "^# Add.*go/bin" ~/.bashrc
+then
+  echo 'Adding ~/go/bin to PATH ...'
+  cat >> ~/.bashrc <<'EOF'
+# Add ~/go/bin to PATH
+export PATH="~/go/bin:$PATH"
+EOF
+fi
