@@ -46,7 +46,6 @@ run_cmd() {
 }
 
 run() {
-  set -x
   local dir
   local os
   case "$OS" in
@@ -80,6 +79,12 @@ run() {
 }
 
 main() {
+  if ! [[ $EUID -ne 0 ]]
+  then
+    [ ! -z "${SUDO_USER:-}" ] && echo -n "$SUDO_USER, please " || echo -n "Please, "
+    echo "run this script as a regular user (not root)!"
+    exit 1
+  fi
   detect_distro
   local args="$@"
   echo "Provisioning $OS version $VER (with $args) ..."
