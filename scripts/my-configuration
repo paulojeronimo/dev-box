@@ -1,0 +1,65 @@
+#!/usr/bin/env bash
+DEBUG=${DEBUG:-false}
+$DEBUG && set -x || set +x
+set -eou pipefail
+
+export BASE_DIR=`cd "$(dirname "$0")"/..; pwd`
+source ./provision/common/common
+cd "$BASE_DIR"
+
+remove=false
+alternatives=false
+alternative_files=false
+case "${1:-}" in
+  rm) remove=true;;
+  alternatives) alternatives=true;;
+  alternative-files) alternative_files=true;;
+esac
+
+function rm_f() { rm "$1"; echo " removed!"; }
+
+function listed() {
+  local f
+  # https://superuser.com/a/284226
+  while IFS= read -r f
+  do
+    if [ "$1" = "$f" ]; then return 0; fi
+  done <<< ${list:-}
+  return 1
+}
+
+# https://unix.stackexchange.com/a/20039/292211
+function push_to_list() { printf -v list "$1\n${list:-}"; echo; }
+
+if $alternatives; then
+  find . -type f -path './config/*'
+else
+  f=./config.yaml
+  ! [ -f "$f" ] || {
+    echo -n "$f"
+    ! $remove && echo || rm_f "$f"
+  }
+fi
+
+for f in $(
+  find . -type f ! -path './.git*' -name '*.sample*' | sort)
+do
+  if $alternatives
+  then
+    if ! [ "${f##*.}" = "sample" ]; then continue; fi
+    echo $f
+    continue
+  fi
+  if $alternative_files
+  then
+    if [ "${f##*.}" = "sample" ]; then continue; fi
+    echo $f
+    continue
+  fi
+  f_config=${f%*.sample*}
+  [ -f "$f_config" ] && {
+    if listed "$f_config"; then continue; fi
+    echo -n "$f_config"
+    ! $remove && push_to_list "$f_config" || rm_f "$f_config"
+  }
+done

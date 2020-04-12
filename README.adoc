@@ -3,22 +3,50 @@
 :numbered:
 
 :archlinux-version:  2020.03.04
-:ubuntu-version: 20190914.0.0
+:ubuntu-version: 20200407.0.0
+
 :uri-archlinux-version: https://app.vagrantup.com/archlinux/boxes/archlinux/versions/{archlinux-version}
 :uri-ubuntu-version: https://app.vagrantup.com/ubuntu/boxes/bionic64/versions/{ubuntu-version}
 :uri-macos-virtualbox-install-instructions: https://github.com/paulojeronimo/dicas-osx/blob/master/homebrew.md#virtualbox
 :uri-macos-vagrant-install-instructions: https://github.com/paulojeronimo/dicas-osx/blob/master/homebrew.md#vagrant
+
+:archlinux: https://archlinux.org[Arch Linux^]
+:ubuntu: https://ubuntu.org[Ubuntu^]
+:macOS: https://www.apple.com/macos/catalina/[macOS^]
+:Cygwin: https://www.cygwin.com/[Cygwin^]
+:MSYS: http://www.mingw.org/wiki/MSYS[MSYS^]
+:VirtualBox: https://virtualbox.org[VirtualBox^]
+:Vagrant: https://www.vagrantup.com/[Vagrant^]
+
 :sensitive-tar: tmp/sensitive.tar
 :backup-tar: tmp/backup.tar
 
 This project offers you scripts to provision a
 development box using one of the following
-operational systems:
+operating system (OS):
 
 . Arch Linux (version {uri-archlinux-version}[
 {archlinux-version}^]).
 . Ubuntu (bionic64 version {uri-ubuntu-version}[
 {ubuntu-version}^]).
+
+You have some alternatives to use the scripts
+provided by this repo:
+
+. You can use it directly into your OS if you are
+using one of the above.
+. If you prefer not to use {Vagrant}, you can
+create a Virtual Machine (VM) by yourself and
+install one of the OS listed above.
+. You can use {VirtualBox} and {Vagrant} if you
+are running a {macOS} or any other OS that
+supports the execution of Bash scripts
+(including a Windows environment running {Cygwin}
+or {MSYS}. [red]#I did not test such thing yet!#).
+
+The following instructions need to be
+followed if you are in the last of the
+alternatives above.
 
 == Prerequisites
 
@@ -41,7 +69,8 @@ NOTE: Using the parameter `-f` this script will
 force the generation of the `{sensitive-tar}`
 file.
 
-To destroy de VM use the link:scripts/destroy[] script:
+To destroy de VM use the link:scripts/destroy[]
+script:
 
 ----
 $ ./scripts/destroy
@@ -80,15 +109,12 @@ configure.
 All script files with the '.sample' extension can
 be switched by files with the same name but
 without this extension.
+To discover which files are these, use the script
+link:scripts/my-configuration[] passing the
+argument "alternatives" to it:
 
 ----
-$ find . -type f -name '*.sample' ! -path './.git/*'
-./provision/Ubuntu/install.sample
-./provision/common/install.sample
-./provision/common/config.sample
-./provision/Arch/install.sample
-./scripts/create-sensitive-tar.sample
-./scripts/create-backup-tar.sample
+$ ./scripts/my-configuration alternatives
 ----
 
 So, if you create a file

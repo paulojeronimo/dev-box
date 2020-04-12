@@ -1,13 +1,15 @@
 #!/usr/bin/env bash
-set +x
-set -e
-
+set -eou pipefail
 BASE_DIR=`cd "$(dirname "$0")"; pwd`
+source "$BASE_DIR"/common
+
 cd "$BASE_DIR"
-source ./common
 
-[ -d "$PROJECTS_DIR"/$REACT_SAMPLE_PROJECT ] && ./uninstall-truffle-react-sample || true
-
+! [ -d "$PROJECTS_DIR"/$REACT_SAMPLE_PROJECT ] || ./uninstall-truffle-react-sample
 echo "Installing $TRUFFLE_REACT_SAMPLE_PROJECT project ..."
+
+echo "Skipping! TODO: Fix this script!"
+exit 0
+
 mkdir -p "$PROJECTS_DIR"/$TRUFFLE_REACT_SAMPLE_PROJECT && cd "$_"
 truffle unbox react 

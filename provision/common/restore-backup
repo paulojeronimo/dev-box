@@ -6,8 +6,8 @@ BASE_DIR=`cd "$(dirname "$0")"; pwd`
 cd "$BASE_DIR"
 source ./common
 
-if [ -f "$BACKUP_TAR_GZ" ]
+if [ -f "$BACKUP_TAR" ]
 then
-  echo "Restoring backup (from \"$BACKUP_TAR_GZ\") ..."
-  tar xvfz "$BACKUP_TAR_GZ" -C ~/
+  echo "Restoring backup (from \"$BACKUP_TAR\") ..."
+  tar xf "$BACKUP_TAR" -C ~/
 fi

@@ -1,0 +1,3 @@
+Fix my-configuration script when alternative-files is passed
+Fix install-truffle-react-sample script
+Fix uninstall-truffle-suite script

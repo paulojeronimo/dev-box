@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
-set +x
-set -e
-
+set -eou pipefail
 BASE_DIR=`cd "$(dirname "$0")"; pwd`
-cd "$BASE_DIR"
-source ./common
+source "$BASE_DIR"/common
+
+# Note: This script isn't working on Ubuntu!
+if [ -f /etc/debian_version ]; then
+  echo "Skipping "$0" installation!"
+fi
 
 echo 'Adding Ruby gems to PATH ...'
 setpath='export PATH=$PATH:~/.gem/ruby/2.6.0/bin'

@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -eou pipefail
 
 # base directory for all projects
 PROJECTS_DIR=~/projects

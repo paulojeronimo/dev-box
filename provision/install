@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
-DEBUG=${DEBUG:-false}
-$DEBUG && set -x || set +x
 set -eou pipefail
-
 BASE_DIR=`cd "$(dirname "$0")"; pwd`
 
 # https://unix.stackexchange.com/questions/6345/how-can-i-get-distribution-name-and-version-number-in-a-simple-shell-script
@@ -53,7 +50,7 @@ run() {
     *) os=$OS ;;
   esac
   local origin=$1; shift
-  [ USER = vagrant ] && dir=/vagrant/provision || dir=$BASE_DIR
+  [ "$USER" = "vagrant" ] && dir=/vagrant/provision || dir=$BASE_DIR
   case "$origin" in
     distro) dir=$dir/$os ;;
     common) dir=$dir/common ;;

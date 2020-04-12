@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
-set +x
-set -e
-
+set -eou pipefail
 BASE_DIR=`cd "$(dirname "$0")"; pwd`
+source "$BASE_DIR"/common
+
 cd "$BASE_DIR"
-source ./common
 
 echo "Installing todotxt-machine ..."
 pip install todotxt-machine

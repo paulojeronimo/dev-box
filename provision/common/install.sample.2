@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
-set +x
-set -e
-
+set -eou pipefail
 BASE_DIR=`cd "$(dirname "$0")"; pwd`
-cd "$BASE_DIR"
-source ./common
+source "$BASE_DIR"/common
 
+cd "$BASE_DIR"
+
+./add-paths
 ./install-dotfiles
 ./install-sensitive
 ./install-asciidoctor-gems
@@ -20,4 +20,6 @@ export PATH=$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH
 ./install-truffle-suite
 ./install-truffle-react-sample
 ./install-decktape
+./install-pup
+./install-todotxt-machine
 ./restore-backup

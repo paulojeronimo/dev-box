@@ -1,12 +1,9 @@
 #!/usr/bin/env bash
-set +x
-set -e
-
+set -eou pipefail
 BASE_DIR=`cd "$(dirname "$0")"; pwd`
-cd "$BASE_DIR"
-source ./common
+source "$BASE_DIR"/common
 
-[ -d "$PROJECTS_DIR/$DOTFILES_PROJECT" ] && ./uninstall-dotfiles || true
+! [ -d "$PROJECTS_DIR/$DOTFILES_PROJECT" ] || ./uninstall-dotfiles
 
 echo "Installing $DOTFILES_PROJECT project ..."
 mkdir -p "$PROJECTS_DIR"/${DOTFILES_PROJECT%/*} && cd "$_"

@@ -1,10 +1,7 @@
 #!/usr/bin/env bash
-set +x
-set -e
-
+set -eou pipefail
 BASE_DIR=`cd "$(dirname "$0")"; pwd`
-cd "$BASE_DIR"
-source ./common
+source "$BASE_DIR"/common
 
 echo "Uninstalling $DOTFILES_PROJECT ..."
 cd $PROJECTS_DIR > /dev/null

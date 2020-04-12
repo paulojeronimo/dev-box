@@ -1,13 +1,11 @@
 #!/usr/bin/env bash
-DEBUG=${DEBUG:-false}
-$DEBUG && set -x || set +x
-set -eo pipefail
-
+set -eou pipefail
 export BASE_DIR=`cd "$(dirname "$0")"/..; pwd`
-source ./provision/common/common
+source "$BASE_DIR"/provision/common/common
+
 cd "$BASE_DIR"
 
-if [ "$1" = "-f" ] || [ ! -f "$SENSITIVE_TAR" ]
+if [ "${1:-}" = "-f" ] || [ ! -f "$SENSITIVE_TAR" ]
 then
   echo "Generating a backup for your sensitive files to replicate it on VM ..."
   mkdir -p "`dirname "$SENSITIVE_TAR"`"

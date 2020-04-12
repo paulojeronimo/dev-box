@@ -3,12 +3,11 @@
 # * References:
 # ** https://yarnpkg.com/en/docs/install#mac-stable
 #
-set +x
-set -e
-
+set -eou pipefail
 BASE_DIR=`cd "$(dirname "$0")"; pwd`
+source "$BASE_DIR"/common
+
 cd "$BASE_DIR"
-source ./common
 
 [ -d ~/.yarn ] && ./uninstall-yarn || true
 

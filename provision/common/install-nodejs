@@ -3,14 +3,13 @@
 # * References:
 # ** https://github.com/nvm-sh/nvm#install--update-script
 #
-set +x
-set -e
-
+set -eou pipefail
 BASE_DIR=`cd "$(dirname "$0")"; pwd`
-cd "$BASE_DIR"
-source ./common
+source "$BASE_DIR"/common
 
-[ -d ~/.nvm ] && ./uninstall-nodejs || true
+cd "$BASE_DIR"
+
+! [ -d ~/.nvm ] || ./uninstall-nodejs
 unset NVM_DIR
 
 echo "Installing nvm ($NVM_VERSION) ..."

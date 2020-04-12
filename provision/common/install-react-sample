@@ -1,12 +1,11 @@
 #!/usr/bin/env bash
-set +x
-set -e
-
+set -eou pipefail
 BASE_DIR=`cd "$(dirname "$0")"; pwd`
-cd "$BASE_DIR"
-source ./common
+source "$BASE_DIR"/common
 
-[ -d "$PROJECTS_DIR"/$REACT_SAMPLE_PROJECT ] && ./uninstall-react-sample || true
+cd "$BASE_DIR"
+
+! [ -d "$PROJECTS_DIR"/$REACT_SAMPLE_PROJECT ] || ./uninstall-react-sample
 
 echo "Configuring ~/.bashrc to $REACT_BASHRC_CONFIG ..."
 cat >> ~/.bashrc <<EOF

@@ -1,8 +1,8 @@
 vm:
   name: dev-box
   box: archlinux/archlinux
-  box_version: 2020.03.04
-  memory: 8192
+  box_version: 2020.04.02
+  memory: 4096
   disk_size: 80GB
   cpus: 2
 # provision:
