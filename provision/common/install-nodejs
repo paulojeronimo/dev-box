@@ -9,15 +9,23 @@ source "$BASE_DIR"/common
 
 cd "$BASE_DIR"
 
-! [ -d ~/.nvm ] || ./uninstall-nodejs
-unset NVM_DIR
+./uninstall-nodejs
 
 echo "Installing nvm ($NVM_VERSION) ..."
 curl -s -o- https://raw.githubusercontent.com/nvm-sh/nvm/v$NVM_VERSION/install.sh | bash
 
+NVM_DIR=`nvm_dir`
+echo "nvm is installed in \"$NVM_DIR\" ..." 
+
 echo "Installing Node.js ($NODEJS_VERSION) via nvm ..."
-export NVM_DIR="$HOME/.nvm"   
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+NVM_SH=$NVM_DIR/nvm.sh
+if [ -f "$NVM_SH" ]
+then
+  source "$NVM_SH"
+else
+  echo "\"$NVM_SH\" wasn't found!"
+  exit 1
+fi
 
 nvm install $NODEJS_VERSION
 

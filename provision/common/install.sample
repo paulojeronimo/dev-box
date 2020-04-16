@@ -8,4 +8,14 @@ cd "$BASE_DIR"
 ./add-paths
 ./install-dotfiles
 ./install-sensitive
+./install-asciidoctor-gems
+./install-nodejs
+export NVM_DIR=`nvm_dir`
+[ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
+
+./install-yarn
+export PATH=$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH
+
+./install-todotxt-machine
+
 ./restore-backup

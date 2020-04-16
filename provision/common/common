@@ -16,3 +16,15 @@ then
     exit 1
   fi
 fi
+
+nvm_dir() {
+  local d=/dev/null
+  if [ -d ~/.nvm ]
+  then
+    d=~/.nvm
+  elif [ -d ~/.config/nvm ]
+  then
+    d=~/.config/nvm
+  fi
+  echo -n $d
+}

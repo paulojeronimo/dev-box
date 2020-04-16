@@ -4,5 +4,5 @@ BASE_DIR=`cd "$(dirname "$0")"; pwd`
 source "$BASE_DIR"/common
 
 echo "Uninstalling Node.js ..."
-rm -rf ~/.nvm ~/.npm ~/.npmrc
+rm -rf ~/.nvm ~/.config/nvm ~/.npm ~/.npmrc
 sed -i "/^export NVM_DIR/,+3d" ~/.bashrc
