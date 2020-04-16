@@ -7,13 +7,16 @@ if ! get=`which curl`; then
     exit 1
   fi
 fi
+vagrant=${vagrant:-false}
 check_overwrite=${check_overwrite:-false}
 user=paulojeronimo
 project=dev-box
 github_projects=~/projects/github.com
 repo=$user/$project
 repo_tar=https://github.com/$repo/archive/master.tar.gz
-user_github_dir=~/projects/github.com/$user
+$vagrant &&
+  user_github_dir=. ||
+  user_github_dir=~/projects/github.com/$user
 echo -e "Downloading $repo_tar.\nIt will be extracted in $user_github_dir/$project ..."
 if $check_overwrite; then
   ! [ -d "$user_github_dir/$project" ] || {
@@ -33,5 +36,7 @@ case "$get" in
     ;;
 esac | tar -xz -C $user_github_dir
 mv $user_github_dir/$project-master $user_github_dir/$project
-$user_github_dir/$project/provision/install
+$vagrant &&
+  $user_github_dir/$project/scripts/up ||
+  $user_github_dir/$project/provision/install
 echo -e 'Installation completed!\nPlease, close this window and open another!'
