@@ -23,3 +23,8 @@ export BACKUP_TAR
 
 # projects inside $PROJECTS_DIR
 DOTFILES_PROJECT=github.com/paulojeronimo/dotfiles
+
+# Software versions 
+NVM_VERSION=0.35.3
+NODEJS_VERSION=12.16.2
+YARN_VERSION=1.22.4
