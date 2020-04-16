@@ -33,4 +33,5 @@ case "$get" in
     ;;
 esac | tar -xz -C $user_github_dir
 mv $user_github_dir/$project-master $user_github_dir/$project
-echo 'Done!'
+$user_github_dir/$project/provision/install
+echo -e 'Installation completed!\nPlease, close this window and open another!'
