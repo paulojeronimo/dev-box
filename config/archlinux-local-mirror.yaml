@@ -5,6 +5,9 @@ vm:
   memory: 4096
   disk_size: 80GB
   cpus: 2
+  provision:
+    args:
+      - "--use-local-mirror"
   gui: false
   forwarded_ports:
     - guest: 8545 # default port for ganache-cli

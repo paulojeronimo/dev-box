@@ -14,9 +14,10 @@ project=dev-box
 github_projects=~/projects/github.com
 repo=$user/$project
 repo_tar=https://github.com/$repo/archive/master.tar.gz
-$vagrant &&
-  user_github_dir=. ||
-  user_github_dir=~/projects/github.com/$user
+$vagrant && {
+  echo "Vagrant installation mode on ..."
+  user_github_dir=. 
+} || user_github_dir=~/projects/github.com/$user
 echo -e "Downloading $repo_tar.\nIt will be extracted in $user_github_dir/$project ..."
 if $check_overwrite; then
   ! [ -d "$user_github_dir/$project" ] || {
@@ -36,7 +37,14 @@ case "$get" in
     ;;
 esac | tar -xz -C $user_github_dir
 mv $user_github_dir/$project-master $user_github_dir/$project
-$vagrant &&
-  $user_github_dir/$project/scripts/up ||
-  $user_github_dir/$project/provision/install
-echo -e 'Installation completed!\nPlease, close this window and open another!'
+$vagrant && {
+  cd $user_github_dir/$project
+  f="config/${config:-}.yaml"
+  if [ -f "$f" ]
+  then
+    echo "Using $f ..."
+    cp $f config.yaml
+  fi
+  ./scripts/up
+} || $user_github_dir/$project/provision/install
+echo -e "Installation completed!\nPlease, close this window and open another!"
