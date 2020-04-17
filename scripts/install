@@ -29,22 +29,19 @@ else
 fi
 mkdir -p $user_github_dir
 case "$get" in
-  *curl)
-    $get -L $repo_tar
-    ;;
-  *)
-    $get -O- $repo_tar
-    ;;
+  *curl) $get -L $repo_tar ;;
+  *) $get -O- $repo_tar ;;
 esac | tar -xz -C $user_github_dir
 mv $user_github_dir/$project-master $user_github_dir/$project
 $vagrant && {
   cd $user_github_dir/$project
   f="config/${config:-}.yaml"
-  if [ -f "$f" ]
-  then
+  if [ -f "$f" ]; then
     echo "Using $f ..."
-    cp $f config.yaml
+    ln -s $f config.yaml
   fi
   ./scripts/up
-} || $user_github_dir/$project/provision/install
-echo -e "Installation completed!\nPlease, close this window and open another!"
+} || {
+  $user_github_dir/$project/provision/install
+  echo -e "Installation completed!\nPlease, close this window and open another!"
+}
