@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 set -eou pipefail
-
 if ! get=`which curl`; then
   if ! get=`which wget`; then
     echo "Fail! Please, install curl or wget!"
@@ -11,13 +10,13 @@ vagrant=${vagrant:-false}
 check_overwrite=${check_overwrite:-false}
 user=paulojeronimo
 project=dev-box
-github_projects=~/projects/github.com
+github_projects=~/Projects/github.com
 repo=$user/$project
 repo_tar=https://github.com/$repo/archive/master.tar.gz
 $vagrant && {
   echo "Vagrant installation mode on ..."
   user_github_dir=. 
-} || user_github_dir=~/projects/github.com/$user
+} || user_github_dir=$github_projects/$user
 echo -e "Downloading $repo_tar.\nIt will be extracted in $user_github_dir/$project ..."
 if $check_overwrite; then
   ! [ -d "$user_github_dir/$project" ] || {
