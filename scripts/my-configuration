@@ -42,7 +42,7 @@ else
 fi
 
 for f in $(
-  find . -type f ! -path './.git*' -name '*.sample*' | sort)
+  find . -type f ! \( -path './.git*' -o -path './tmp*' \) -name '*.sample*' | sort)
 do
   if $alternatives
   then

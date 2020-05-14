@@ -1,5 +1,6 @@
 = Development Box
 :toc:
+:icons: font
 :numbered:
 
 :archlinux-version:  2020.03.04
@@ -98,10 +99,23 @@ $ cp config/ubuntu-bionic64.yaml config.yaml
 $ vim config.yaml
 ----
 
-Currently, to do this, you can use the following
-files:
+[NOTE]
+====
+If you just want to use another configuration
+alternative (without modifying it), you can link
+simple link `config.yaml` to it:
+
+----
+$ ln -sf config/ubuntu-bionic64.yaml config.yaml
+----
+====
+
+To do this, you can use one of the following
+files (but there are others):
 
 . link:config/archlinux.yaml[]
+. link:config/archlinux-local-mirror.yaml[] (same
+  as above but configured to use a local mirror).
 . link:config/ubuntu-bionic64.yaml[]
 
 There are some other points that you can
@@ -121,3 +135,11 @@ So, if you create a file
 `./scripts/create-sensitive-tar` it will be used
 in place of the file
 `./scripts/create-sensitive-tar.sample`.
+
+You can list all alternative files (starting with
+`.sample` extension) by running the following
+command:
+
+----
+$ ./scripts/my-configuration alternative-files
+----
