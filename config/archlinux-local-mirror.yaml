@@ -14,4 +14,6 @@ vm:
       host: 8545
     - guest: 3000 # default port for react apps
       host: 3000
+    - guest: 2015 # default port for react apps
+      host: 2015
 vbguest_auto_update: false

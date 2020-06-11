@@ -10,10 +10,12 @@ cd "$BASE_DIR"
 remove=false
 alternatives=false
 alternative_files=false
+set_config=false
 case "${1:-}" in
   rm) remove=true;;
   alternatives) alternatives=true;;
   alternative-files) alternative_files=true;;
+  set) set_config=true;;
 esac
 
 function rm_f() { rm "$1"; echo " removed!"; }
@@ -31,12 +33,33 @@ function listed() {
 # https://unix.stackexchange.com/a/20039/292211
 function push_to_list() { printf -v list "$1\n${list:-}"; echo; }
 
+function echo_file() {
+  ! [ -L "$1" ] && echo -n "$1" || {
+    echo -n "$1 -> `readlink $1`"
+  }
+}
+
+if $set_config; then
+  name=${2:-}
+  [ "$name" ] || { echo "set configuration to what?"; exit 1; }
+  for f in $(find . -type f -name "*.sample.$name")
+  do
+    f_sample=${f%%.sample.$name}
+    (
+      cd "`dirname "$f"`";
+      echo "Linking ${f##*/} to ${f_sample##*/} in ${PWD#$BASE_DIR/}"
+      ln -sf ${f##*/} ${f_sample##*/}
+    )
+  done
+  exit 0
+fi
+
 if $alternatives; then
   find . -type f -path './config/*'
 else
   f=./config.yaml
   ! [ -f "$f" ] || {
-    echo -n "$f"
+    echo_file "$f"
     ! $remove && echo || rm_f "$f"
   }
 fi
@@ -59,7 +82,7 @@ do
   f_config=${f%*.sample*}
   [ -f "$f_config" ] && {
     if listed "$f_config"; then continue; fi
-    echo -n "$f_config"
+    echo_file "$f_config"
     ! $remove && push_to_list "$f_config" || rm_f "$f_config"
   }
 done

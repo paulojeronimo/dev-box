@@ -143,3 +143,12 @@ command:
 ----
 $ ./scripts/my-configuration alternative-files
 ----
+
+Suppose you alternative configuration files
+with a suffix '.slim'. To point you configuration
+to those files, you can use the following
+command:
+
+----
+$ ./scripts/my-configuration set slim
+----

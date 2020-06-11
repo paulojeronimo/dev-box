@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+set -eou pipefail
+
+# base directory for all projects
+PROJECTS_DIR=~/Projects
+
+# backup file for sensitive or specific data (ssh keys, .gitconfig)
+SENSITIVE_TAR=tmp/sensitive.tar
+# backup file with other user files
+BACKUP_TAR=tmp/backup.tar
+
+if [ $USER = vagrant ]
+then
+  SENSITIVE_TAR=/vagrant/$SENSITIVE_TAR
+  BACKUP_TAR=/vagrant/$BACKUP_TAR
+else
+  SENSITIVE_TAR=$BASE_DIR/$SENSITIVE_TAR
+  BACKUP_TAR=$BASE_DIR/$BACKUP_TAR
+fi
+
+export SENSITIVE_TAR
+export BACKUP_TAR
+
+# projects inside $PROJECTS_DIR
+DOTFILES_PROJECT=github.com/paulojeronimo/dotfiles

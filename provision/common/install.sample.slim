@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -eou pipefail
+BASE_DIR=`cd "$(dirname "$0")"; pwd`
+source "$BASE_DIR"/common
+
+cd "$BASE_DIR"
+
+./add-paths
+./install-dotfiles
+./install-sensitive
+./install-todotxt-machine
+./restore-backup
