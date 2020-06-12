@@ -11,3 +11,11 @@ pacman --noconfirm -S \
   virtualbox-guest-utils-nox \
   rsync \
   reflector
+
+# Install ntp and configure the time zone
+# https://wiki.archlinux.org/index.php/System_time#Time_synchronization
+pacman --noconfirm -S ntp
+timedatectl set-timezone America/Sao_Paulo
+
+# Increase the max number of open files
+echo '* soft nofile 8192' | sudo tee -a /etc/security/limits.conf
